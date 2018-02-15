@@ -1,0 +1,17 @@
+<div class="search-wrapper">
+    <label for="search" class="hide">Search Users</label>
+    <input placeholder="Search" id="search" (keydown)="keyDown($event)" class="search-input" [formControl]="input" type="text" 
+    />
+  
+    <div *ngIf="users">
+      <div class="results">
+        <div class="user" [@fadeIn] *ngFor="let user of users" tabindex="0" (click)="goToUrl(user.html_url)" (keydown)="keyDown($event, user.html_url)">
+          <div class="img-wrapper">
+            <img class="img" src="{{user.avatar_url}}" alt="{{user.login}} Avatar" />
+          </div>
+          <h3>{{user.login}}</h3>
+          <div *ngIf="user.site_admin">Site Admin</div>
+        </div>
+      </div>
+    </div>
+  </div>
